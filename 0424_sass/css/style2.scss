@@ -1,0 +1,263 @@
+// style2.scss
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+
+$bg_color:#ffff00;
+$bg_color1:#00ff00;
+$bg_color2:#ff0000;
+$txt_color01:#ff0000;
+$txt_color02:#0000ff;
+$f_color01:#333;
+
+@mixin h3txt{
+  font-family: "Noto Sans KR", "맑은 고딕", arial, sans-serif;
+  font-size:30px;
+}
+.title01{
+  @include h3txt;
+  background:$bg_color;
+  color:$txt_color01;
+}
+.title02{
+  @include h3txt;
+  background:$bg_color;
+  color:$txt_color02;
+}
+// 글자생략기호 나오게 하는 서식
+@mixin txt_over{
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  overflow:hidden;
+}
+.p01{
+  @include txt_over;
+  width:500px;
+  border:1px solid #000;
+  background:$bg_color;
+}
+
+// 버튼 글자서식
+@mixin btnFont{
+  font-family: "궁서체";
+  font-weight:bold;
+  font-size:20px;
+}
+//버튼 모양서식
+@mixin btnArea{
+  border:1px solid #ccc;
+  padding:5px 30px;
+  border-radius:30px;
+}
+@mixin btn{
+  @include btnFont;
+  @include btnArea;
+}
+.btn01{
+  @include btn;
+  background-color: $bg_color;
+}
+.btn02{
+  @include btn;
+  background-color:$bg_color1;
+}
+
+$time:0.5s;
+
+// 버튼에 마우스 오버시 적용할 믹스인함수
+@mixin btn_over{
+  background:#000;
+  color:#fff;
+  transition:$time;
+}
+.btn01:hover, .btn02:hover{
+  @include btn_over;
+}
+
+// 토글버튼 서식
+.toggle_btn{
+  width:40px;height:40px;
+  display:block;  border:1px solid #ccc;
+  position:relative;
+}
+@mixin bar{
+  position:absolute;	display:inline-block;
+	width:38px;left:1px;	height:3px;
+	background:#333;	transition:0.5s;
+}
+.bar{
+  @include bar;  transition:$time;
+  }
+.bar1{top:5px;}
+.bar2{top:18px;}
+.bar3{bottom:5px;}
+
+#toggle:checked + label > .bar1{transform:rotate(45deg) translate(10px, 10px)}
+#toggle:checked + label > .bar2{opacity: 0;}
+#toggle:checked + label > .bar3{transform:rotate(-45deg) translate(10px, -10px)}
+
+// 토글서식
+.toggle{
+  position:relative;
+  width:40px;height:40px;
+  border:1px solid #000;
+  cursor:pointer;
+}
+@mixin bar{  
+  display:inline-block;
+  width:40px;height:4px;
+  transition:0.3s;left:0px;
+}
+.bar{
+  @include bar;
+}
+.toggle > span:first-child{top:5px;}
+.toggle > span:nth-child(2){top:17px;}
+.toggle > span:last-child{top:30px;}
+
+/* 토글버튼을 클릭하였을 때 적용되는 class서식*/
+.t_act01{transform:rotate(-45deg);top:18px !important;}
+.t_act02{display:none !important;}
+.t_act03{transform:rotate(45deg);top:18px !important;}
+
+.t2{
+  background:$bg_color2 !important;
+}
+
+// 4. mixin함수에 매개변수 삽입하기
+@mixin divBox($bgcolor){
+  @include btnFont;
+  background-color:$bgcolor;
+}
+#box01{
+  @include divBox(#8c8cc3);
+}
+#box02{
+  @include divBox(#00ff00);
+}
+
+
+//  sns스타일 믹싱기법으로 만들기
+@mixin sns{
+  font-size:30px;
+  color:$f_color01;
+}
+@mixin hover{
+  color:$bg_color2;
+}
+.sns{
+  width:200px;
+  display:flex;
+  justify-content: space-around;
+}
+.sns li{
+  margin:0px;padding:0px;list-style:none;
+}
+.sns i.fab, .sns i.fas{
+  @include sns;
+}
+.sns li:hover i{
+  @include hover;
+}
+
+
+.btn {
+  width: 200px;
+  height: 30px;
+  border: 1px solid #ccc;
+  text-align: center;
+  color: #fff;
+}
+
+.btn03 {
+  background: #f00;
+}
+
+.btn04 {
+  background: #0ae00a;
+}
+
+.btn05 {
+  background: #dddd09;
+}
+
+.list01 > li {
+  margin: 10px 0px;
+}
+
+.list01 > li:first-child {
+  width: 300px;
+  border: 1px solid #0004ff;
+}
+
+.list01 > li:nth-child(2) {
+  width: 300px;
+  border: 3px solid #0004ff;
+}
+
+.list01 > li:nth-child(3) {
+  width: 300px;
+  border: 3px double #f00;
+}
+
+.list01 > li:last-child {
+  width: 300px;
+  border: 5px dashed #0f0;
+}
+
+table {
+  border-collapse: collapse;
+  background: #f0f0f0;
+  width: 500px;
+}
+
+table caption {
+  background: #ffff00;
+}
+
+table tr td {
+  line-height: 210%;
+  text-align: right;
+  padding-right: 20px;
+}
+
+table tr:nth-child(2n+1) {
+  background: #fddc7a;
+}
+
+
+// 테이블 테두리 서식 기본값 넣기
+@mixin border($w:1px, $s:solid, $c:#f00){
+  width:500px;
+  border:$w $s $c;
+}
+//테이블 서식 적용시 필요한 매개변수를 변경하여 넣을 수 있다.
+.border{
+  // @include border(5px, double);
+}
+
+// 테이블 배경과 크기 서식
+@mixin table($t_bg:#f0f0f0){
+  background:$t_bg;
+  width:500px;
+}
+@mixin caption($bg:#ffff00){
+  background:$bg;
+  padding:10px 0px;
+  font-weight: bold;
+}
+table{
+  border-collapse:collapse;
+  @include table;
+}
+table caption { @include caption;}
+table tr td{
+  line-height:210%;
+	text-align:right;
+	padding-right:20px;
+}
+@mixin odd_tr($bg:#fddc7a){
+  background:$bg;
+}
+table tbody tr:nth-child(2n+1){
+  @include odd_tr;
+}

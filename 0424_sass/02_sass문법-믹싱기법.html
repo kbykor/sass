@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>02_sass문법-믹싱기법(mixin, include)</title>
+  <link href="./css/style2.css" type="text/css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+  <script>
+    $(document).ready(function(){
+
+      //클릭하면
+      $('.toggle').click(function(){
+        $(this).find('span').eq(0).toggleClass('t_act01');
+        $(this).find('span').eq(1).toggleClass('t_act02');
+        $(this).find('span').eq(2).toggleClass('t_act03');
+      });
+
+    });
+  </script>
+</head>
+<body>
+  <h2>02_sass문법-믹싱기법(mixin, include)</h2>
+  <h3>1. $mixin문법</h3>
+  <p>웹사이트 전체에 재사용할 css코드를 정의하는 문.</p>
+  <pre>
+    @mixin mixin명{
+      //반복해서 사용할 스타일 서식을 작성한다.
+    }
+  </pre>
+
+  <h3>2. @include문법</h3>
+  <p>@mixin을 선택자에 포함하는데 사용하는 지시문</p>
+  <pre>
+    선택자{
+      @include mixin명;
+    }
+  </pre>
+
+  <h3 class="title01">h3태그 요소를 2개 작성하여 동일한 서식과 다른 서식 적용하기</h3>
+  <h3 class="title02">mixin서식 적용하기</h3>
+
+  <p class="p01">믹스인 함수(txt_over)를 사용하여 글자 생략기호 나오게 하는 서식적용하기</p>
+
+  <h3>3. @mixin을 중첩하여 새로운 @mixin만들기</h3>
+  <pre>
+    문법)
+    @mixin 믹스인명 A{
+      //재사용할 스타일 서식을 작성
+    }
+    
+    @mixin 믹스인명 B{
+      //재사용할 스타일 서식을 작성
+    }
+    
+    @mixin 믹스인명 C{
+      @include 믹스인명 A;
+      @include 믹스인명 B;
+    }
+  </pre>
+
+  <p>실습예제 1. - 문단태그안에 span요소 2개를 작성하여 버튼 서식 각각 적용하기</p>
+  <p>
+    <span class="btn01">버튼1</span>
+    <span class="btn02">버튼2</span>
+  </p>
+
+  <h3>실습예제 2. @mixin, @include문법을 활용하여 모바일 토글버튼 구현하기</h3>
+  <input type="checkbox" id="toggle">
+  <label for="toggle" class="toggle_btn">
+		<span class="bar bar1">&nbsp;</span>
+		<span class="bar bar2">&nbsp;</span>
+		<span class="bar bar3">&nbsp;</span>
+	</label>
+<br>
+  <div class="toggle">
+    <span class="bar t2"></span>
+    <span class="bar t2"></span>
+    <span class="bar t2"></span>
+  </div>
+
+  <p>.toggle서식을 작성하고 span태그요소에 적용할 @mixin서식을 만든 후 제이쿼리에서 클릭하면 X표시가 나오고 다시 클릭시 원위치로 돌아가게 한다.</p>
+
+  <h3>실습예제 3. sns아이콘(페이스북, 트위터, 인스타,카카오)을 삽입하여 믹싱기법으로 스타일 서식 만들기</h3>
+
+  <ul class="sns">
+    <li><i class="fab fa-facebook-square"></i></li>
+    <li><i class="fab fa-twitter-square"></i></li>
+    <li><i class="fab fa-instagram-square"></i></li>
+    <li><i class="fas fa-message"></i></li>
+  </ul>
+
+  <h3>4. @mixin에 매개변수 처리하기</h3>
+  <p>@mixin함수처럼 매개변수와 인수값을 가질 수 있다.</p>
+  <p>매개변수를 사용하여 다양한 결과물을 만들 수 있다.</p>
+
+  <pre>
+    @mixin 믹스인명($매개변수){
+      //재사용할 스타일 서식
+    }
+    @include 믹스인명(인수)
+	</pre>
+
+  <div id="box01">box01</div>
+  <div id="box02">box02</div>
+
+
+
+  <h3>실습예제 4.로그인, 네이버, 카카오 로그인 버튼을 만들고 @mixin과 매개변수 대입하기</h3>
+  <input type="buttion" value="LOGIN" class='btn btn03'>
+  <input type="buttion" value="네이버 아이디로 회원가입" class='btn btn04'>
+  <input type="buttion" value="카카오 아이디로 회원가입" class='btn btn05'>
+  
+  <h3>5. @mixin에 매개변 기본값 설정하기</h3>
+  <p>매개변수는 기본값을 가질 수 있다.</p>
+  <p>@include에서 별도의 인수가 전달되지 않으면 기본값이 사용된다.</p>
+  <pre>
+    작성법)
+    @mixin 믹스인명($매개변수:기본값){
+      //적용하고자 하는 css서식;
+    }
+  </pre>
+  
+  <h3>실습5. 목록태그를 작성하여 목록별 테두리 서식을 각각 다르게 적용하기</h3>
+  <ul class="list01">
+    <li>기본 테두리값 적용하기</li>
+    <li>굵은 테두리값(3px) 적용하기</li>
+    <li>이중선(double) 테두리값 적용하기</li>
+    <li>점선(dotted) 테두리값 적용하기</li>
+  </ul>
+  
+  <h3>실습6. 테이블 태그, @mixin함수를 사용하여 4월 달력 UI구현하기</h3>
+
+  <!-- 테이블태그 -->
+  <table class="border">
+    <caption>4월 달력</caption>
+    <thead>
+      <tr>
+        <th>일</th>
+        <th>월</th>
+        <th>화</th>
+        <th>수</th>
+        <th>목</th>
+        <th>금</th>
+        <th>토</th>
+      </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>11</td>
+      <td>12</td>
+      <td>13</td>
+      <td>14</td>
+      <td>15</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td>18</td>
+      <td>19</td>
+      <td>20</td>
+      <td>21</td>
+      <td>22</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <td>24</td>
+      <td>25</td>
+      <td>26</td>
+      <td>27</td>
+      <td>28</td>
+      <td>29</td>
+      <td>30</td>
+    </tr>
+  </tbody>
+  </table>
+</body>
+</html>

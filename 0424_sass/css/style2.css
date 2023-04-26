@@ -1,0 +1,261 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap");
+.title01 {
+  font-family: "Noto Sans KR", "맑은 고딕", arial, sans-serif;
+  font-size: 30px;
+  background: #ffff00;
+  color: #ff0000;
+}
+
+.title02 {
+  font-family: "Noto Sans KR", "맑은 고딕", arial, sans-serif;
+  font-size: 30px;
+  background: #ffff00;
+  color: #0000ff;
+}
+
+.p01 {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 500px;
+  border: 1px solid #000;
+  background: #ffff00;
+}
+
+.btn01 {
+  font-family: "궁서체";
+  font-weight: bold;
+  font-size: 20px;
+  border: 1px solid #ccc;
+  padding: 5px 30px;
+  border-radius: 30px;
+  background-color: #ffff00;
+}
+
+.btn02 {
+  font-family: "궁서체";
+  font-weight: bold;
+  font-size: 20px;
+  border: 1px solid #ccc;
+  padding: 5px 30px;
+  border-radius: 30px;
+  background-color: #00ff00;
+}
+
+.btn01:hover, .btn02:hover {
+  background: #000;
+  color: #fff;
+  transition: 0.5s;
+}
+
+.toggle_btn {
+  width: 40px;
+  height: 40px;
+  display: block;
+  border: 1px solid #ccc;
+  position: relative;
+}
+
+.bar {
+  position: absolute;
+  display: inline-block;
+  width: 38px;
+  left: 1px;
+  height: 3px;
+  background: #333;
+  transition: 0.5s;
+  transition: 0.5s;
+}
+
+.bar1 {
+  top: 5px;
+}
+
+.bar2 {
+  top: 18px;
+}
+
+.bar3 {
+  bottom: 5px;
+}
+
+#toggle:checked + label > .bar1 {
+  transform: rotate(45deg) translate(10px, 10px);
+}
+
+#toggle:checked + label > .bar2 {
+  opacity: 0;
+}
+
+#toggle:checked + label > .bar3 {
+  transform: rotate(-45deg) translate(10px, -10px);
+}
+
+.toggle {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #000;
+  cursor: pointer;
+}
+
+.bar {
+  display: inline-block;
+  width: 40px;
+  height: 4px;
+  transition: 0.3s;
+  left: 0px;
+}
+
+.toggle > span:first-child {
+  top: 5px;
+}
+
+.toggle > span:nth-child(2) {
+  top: 17px;
+}
+
+.toggle > span:last-child {
+  top: 30px;
+}
+
+/* 토글버튼을 클릭하였을 때 적용되는 class서식*/
+.t_act01 {
+  transform: rotate(-45deg);
+  top: 18px !important;
+}
+
+.t_act02 {
+  display: none !important;
+}
+
+.t_act03 {
+  transform: rotate(45deg);
+  top: 18px !important;
+}
+
+.t2 {
+  background: #ff0000 !important;
+}
+
+#box01 {
+  font-family: "궁서체";
+  font-weight: bold;
+  font-size: 20px;
+  background-color: #8c8cc3;
+}
+
+#box02 {
+  font-family: "궁서체";
+  font-weight: bold;
+  font-size: 20px;
+  background-color: #00ff00;
+}
+
+.sns {
+  width: 200px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.sns li {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+.sns i.fab, .sns i.fas {
+  font-size: 30px;
+  color: #333;
+}
+
+.sns li:hover i {
+  color: #ff0000;
+}
+
+.btn {
+  width: 200px;
+  height: 30px;
+  border: 1px solid #ccc;
+  text-align: center;
+  color: #fff;
+}
+
+.btn03 {
+  background: #f00;
+}
+
+.btn04 {
+  background: #0ae00a;
+}
+
+.btn05 {
+  background: #dddd09;
+}
+
+.list01 > li {
+  margin: 10px 0px;
+}
+
+.list01 > li:first-child {
+  width: 300px;
+  border: 1px solid #0004ff;
+}
+
+.list01 > li:nth-child(2) {
+  width: 300px;
+  border: 3px solid #0004ff;
+}
+
+.list01 > li:nth-child(3) {
+  width: 300px;
+  border: 3px double #f00;
+}
+
+.list01 > li:last-child {
+  width: 300px;
+  border: 5px dashed #0f0;
+}
+
+table {
+  border-collapse: collapse;
+  background: #f0f0f0;
+  width: 500px;
+}
+
+table caption {
+  background: #ffff00;
+}
+
+table tr td {
+  line-height: 210%;
+  text-align: right;
+  padding-right: 20px;
+}
+
+table tr:nth-child(2n+1) {
+  background: #fddc7a;
+}
+
+table {
+  border-collapse: collapse;
+  background: #f0f0f0;
+  width: 500px;
+}
+
+table caption {
+  background: #ffff00;
+  padding: 10px 0px;
+  font-weight: bold;
+}
+
+table tr td {
+  line-height: 210%;
+  text-align: right;
+  padding-right: 20px;
+}
+
+table tbody tr:nth-child(2n+1) {
+  background: #fddc7a;
+}/*# sourceMappingURL=style2.css.map */
